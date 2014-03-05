@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Schillerskas Elevkår</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-sanitize.js"></script>
+	<script src="js/nginfscroll.js"></script>
+	<script src="js/foundation.min.js"></script>
+	<script src="js/functions.js"></script>
+</head>
+<body ng-app="schill">
+	<div ng-view>
+		Laddar...
+	</div>
+	<div class="spacer"></div>
+	<div class="tabbar">
+		<a href="#/" class="button">Nyheter</a>
+		<a href="#/schema" class="button">Schema</a>
+		<a href="#/test" class="button">Test</a>
+	</div>
+</body>
+</html>

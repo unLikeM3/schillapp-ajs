@@ -1,0 +1,22 @@
+<nav>
+	<h1>{{ thetitle }}</h1>
+</nav>
+<div class="spacer"></div>
+<article infinite-scroll="loadPosts.getPosts()" infinite-scroll-distance='2' infinite-scroll-disabled="loadPosts.max < loadPosts.offset">
+	<div class="row">
+		<div class="small-12 columns">
+			<div>
+				<section>
+					<div ng-repeat="post in loadPosts.posts">
+						<h3> {{ post.title }} </h3>
+						<div ng-bind-html="post.content"> {{ post.content }} </div>
+						<hr>
+					</div>
+				</section>
+				<div style="clear:both;"></div>
+				<div ng-show="loadPosts.busy"><img style="position: absolute; left: 50%;margin-top: 100px; margin-left: -20px;" src="img/spinner.gif" alt="" /></div>
+				<div ng-show="loadPosts.max < loadPosts.offset">Inga fler inlägg att visa.</div>
+			</div>
+		</div>
+	</div>
+</article>

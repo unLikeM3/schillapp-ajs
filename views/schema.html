@@ -1,0 +1,25 @@
+<nav>
+	<h1>{{ thetitle }}</h1>
+</nav>
+<div class="spacer"></div>
+<div class="row">
+	<div class="small-12 columns">
+		<form name="scheduleForm" ng-model="scheduleForm" novalidate>
+			Personnummer: <br>
+			<input class="small-12 columns" type="text" name="persnr" placeholder="YYMMDDXXXX" ng-pattern="/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]/" ng-model="persnr" required />
+			<select name="day" ng-model="day" required>
+				<option value="1">Måndag</option>
+				<option value="2">Tisdag</option>
+				<option value="4">Onsdag</option>
+				<option value="8">Torsdag</option>
+				<option value="16">Fredag</option>
+			</select>
+			<input ng-click="loadSchedule()" type="submit" class="btn small-12 columns" value="Hämta schema">
+		</form>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12">
+		<div id="schedulecontainer"></div>
+	</div>
+</div>
