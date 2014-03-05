@@ -1,0 +1,54 @@
+<nav>
+	<button class="headerBackBtn" ng-show="currentPage > 0" ng-click="switchPage(prevPage);">Tillbaka</button>
+	<h1>{{ thetitle }}</h1>
+</nav>
+<div class="spacer"></div>
+<div class="row">
+	<div class="small-12 columns">
+		<div class="form-page-container-outer">
+			<form name="memberform" ng-model="memberform" novalidate>
+				<div class="form-page-container-inner">
+					<div class="form-page">
+						Förnamn:
+						<input type="text" name="fornamn">
+						Efternamn:
+						<input type="text" name="efternamn">
+						Personnummer:
+						<input type="text" name="ssn">
+						Kön:
+						<select name="kon">
+							<option value="man">Juridisk man</option>
+							<option value="kvinna">Juridisk kvinna</option>
+						</select>
+						<button ng-click="switchPage(1);">Fortsätt</button>
+					</div>
+					<div class="form-page">
+						Address:
+						<input type="text" name="adress">
+						C/o address:
+						<input type="text" name="co">
+						Ort:
+						<input type="text" name="ort">
+						Telefonnummer:
+						<input type="text" name="tel">
+						Alt. telefonnummer:
+						<input type="text" name="alttel">
+						Email:
+						<input type="email" name="email">
+						<button ng-click="switchPage(2);">Fortsätt</button>
+					</div>
+					<div class="form-page">
+						<button ng-click="openInfo()">Information och stadgar</button>
+						<div class="row">
+							<div class="small-12 columns infoPage">
+								<h2>Stadgar</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, numquam, corrupti, pariatur earum accusamus sapiente magnam error veritatis ipsa optio neque illo quo esse qui hic exercitationem ea nobis aliquam nostrum ipsum? Obcaecati, architecto, doloremque commodi nam quasi laudantium animi eum ratione voluptas quae blanditiis suscipit maxime ducimus repellendus totam?</p>
+							</div>
+						</div>
+						<button ng-click="submitForm();">Jag accepterar stadgarna och vill bli medlem</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

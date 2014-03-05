@@ -7,10 +7,29 @@ app.config(function($routeProvider){
 	}).when('/schema', {
 		templateUrl: 'views/schema.html',
 		controller: 'scheduleController'
+	}).when('/medlem', {
+		templateUrl: 'views/blimedlem.html',
+		controller: 'memberController',
 	}).otherwise({
 		templateUrl: 'views/error.html'
 	});
 });
+
+app.controller('memberController', function($scope){
+	$scope.thetitle = "Bli Medlem";
+	$scope.currentPage = 0;
+	$scope.nextPage;
+	$scope.prevPage = 0;
+	$scope.switchPage = function(newpage){
+		var newOffset = newpage*100;
+		$scope.currentPage = newpage;
+		$scope.prevPage = $scope.currentPage - 1;
+		$('.form-page-container-inner').animate({
+			'margin-left': '-'+newOffset+'%',
+		}, 200);
+	}
+});
+
 app.controller('listController', function($scope, $sce, loadposts){
 	$scope.loadPosts = new loadposts();
 	$scope.thetitle = "Nyheter";
