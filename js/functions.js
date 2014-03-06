@@ -1,4 +1,5 @@
 var ajs = angular;
+var host ="http://www.schillerskaselevkar.se/v2";
 var app = ajs.module('schill', ['ngRoute', 'ngSanitize', 'infinite-scroll']);
 app.config(function($routeProvider){
 	$routeProvider.when('/', {
@@ -28,6 +29,18 @@ app.controller('memberController', function($scope){
 			'margin-left': '-'+newOffset+'%',
 		}, 200);
 	}
+	$scope.openInfo = function(){
+		$('.infoPage').slideToggle();
+	}
+	$scope.submitForm = function(){
+		if($scope.memberform.$valid){
+			var form = $('#memberform').serializeArray();
+			console.log(form);
+			$.post(host+'/memberhandler.php', {data: form}, function(data){
+				console.log(data);
+			});
+		}
+	}
 });
 
 app.controller('listController', function($scope, $sce, loadposts){
@@ -42,7 +55,7 @@ app.controller('scheduleController', function($scope){
 		var day = $scope.day;
 		var semester = new Date() > new Date(1900 + new Date().getYear(), 5, 30,0,0,0) ? 'HT' : 'VT';
 
-		$.post('http://www.schillerskaselevkar.se/loadschedule.php', {pnr: ssn, day: day, period: semester}, function(data){
+		$.post(host+'/loadschedule.php', {pnr: ssn, day: day, period: semester}, function(data){
 			$('#schedulecontainer').html(data);
 		});
 	}
@@ -62,7 +75,7 @@ app.factory('loadposts', function($http){
 
 		this.busy = true;
 
-		var url = "http://www.schillerskaselevkar.se/v2/api/get_posts/?count="+this.count+"&offset="+this.offset;
+		var url = host+"/api/get_posts/?count="+this.count+"&offset="+this.offset;
 		$http({method: 'post', url: url}).success(function(data){
 			var items = data.posts;
 			this.posts = this.posts.concat(items);

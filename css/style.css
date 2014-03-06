@@ -15,7 +15,7 @@ body{
 	position: fixed;
 	bottom: 0;
 }
-input.ng-invalid{
+input.ng-invalid.ng-dirty{
 	border: 1px solid #f00 !important;
 }
 .spacer{

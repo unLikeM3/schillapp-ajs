@@ -6,35 +6,35 @@
 <div class="row">
 	<div class="small-12 columns">
 		<div class="form-page-container-outer">
-			<form name="memberform" ng-model="memberform" novalidate>
+			<form name="memberform" ng-model="memberform" id="memberform" novalidate>
 				<div class="form-page-container-inner">
 					<div class="form-page">
-						Förnamn:
-						<input type="text" name="fornamn">
-						Efternamn:
-						<input type="text" name="efternamn">
-						Personnummer:
-						<input type="text" name="ssn">
-						Kön:
-						<select name="kon">
+						Förnamn: *
+						<input type="text" name="fornamn" ng-model="fornamn" required />
+						Efternamn: *
+						<input type="text" name="efternamn" ng-model="efternamn" required />
+						Personnummer: *
+						<input type="text" name="ssn" ng-model="ssn" ng-pattern="/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]/" required>
+						Kön: *
+						<select name="kon" ng-model="kon" required>
 							<option value="man">Juridisk man</option>
 							<option value="kvinna">Juridisk kvinna</option>
 						</select>
 						<button ng-click="switchPage(1);">Fortsätt</button>
 					</div>
 					<div class="form-page">
-						Address:
-						<input type="text" name="adress">
+						Address: *
+						<input type="text" name="adress" required>
 						C/o address:
 						<input type="text" name="co">
-						Ort:
-						<input type="text" name="ort">
-						Telefonnummer:
-						<input type="text" name="tel">
+						Ort: *
+						<input type="text" name="ort" required>
+						Telefonnummer: *
+						<input type="text" name="tel" required>
 						Alt. telefonnummer:
 						<input type="text" name="alttel">
-						Email:
-						<input type="email" name="email">
+						Email: *
+						<input type="email" name="email" required>
 						<button ng-click="switchPage(2);">Fortsätt</button>
 					</div>
 					<div class="form-page">
@@ -45,7 +45,7 @@
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, numquam, corrupti, pariatur earum accusamus sapiente magnam error veritatis ipsa optio neque illo quo esse qui hic exercitationem ea nobis aliquam nostrum ipsum? Obcaecati, architecto, doloremque commodi nam quasi laudantium animi eum ratione voluptas quae blanditiis suscipit maxime ducimus repellendus totam?</p>
 							</div>
 						</div>
-						<button ng-click="submitForm();">Jag accepterar stadgarna och vill bli medlem</button>
+						<button ng-disabled="!memberform.$valid" ng-click="submitForm();">Jag accepterar stadgarna och vill bli medlem</button>
 					</div>
 				</div>
 			</form>
