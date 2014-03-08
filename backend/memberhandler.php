@@ -4,15 +4,38 @@
 	$post = json_decode(json_encode($_POST));
 
 	var_dump($post);
-	foreach($post->data as $field){
-		$name = $field->name;
-		$val = $field->value;
 
-		$sql = mysql_query("INSERT INTO medlemmar2 ('".$name."') VALUES('".$val."')");
-		if(!$sql){
-			echo "Failed.";
-			break;
+	if(isset( $post->fname,  $post->lname,  $post->ssn, $post->sex, $post->arskurs, $post->adress1, $post->city, $post->telnr1, $post->email )  && !empty($post->fname) && !empty($post->lname) && !empty($post->ssn) && !empty($post->sex) && !empty($post->arskurs) && !empty($post->adress1) && !empty($post->city) && !empty($post->telnr1) && !empty($post->email))
+	{
+		if(is_numeric(intval($post->ssn)) && (strlen($post->ssn) == 10 || strlen($post->ssn) == 12)){
+			$checkpnr = mysql_query("SELECT * FROM medlemmar WHERE persnr='$post->ssn'");
+			$checkpnr = mysql_num_rows($checkpnr);
+			if($checkpnr == 0){
+				if(filter_var($post->email, FILTER_VALIDATE_EMAIL)){
+					if(!$post->telnr2){
+						$post->telnr2 = "-";
+					}
+					if(!$post->adress2){
+						$post->adress2 = "-";
+					}
+					$sql = "INSERT INTO medlemmar VALUES ('$post->fname', '$post->lname', '$post->ssn', '$post->email', '$post->arskurs', '$post->telnr1', '$post->adress2', '$post->adress1', '$post->city', '$post->telnr2', '$post->sex')";
+					if(mysql_query($sql)){
+						die('Du är nu medlem!');
+					}else{
+						die('Systemfel, kontakta administratören');
+					}
+				}else{
+					die('Felaktig email');
+				}
+			}else{
+				die('Du är redan medlem!');
+			}
+		}else{
+			die('Felaktigt Personnummer (YYMMDDXXXX eller YYYYMMDDXXXX)');
 		}
+	}else
+	{
+		die('Fyll i alla fält');
 	}
 	die();
 	/*$fname = 	mysql_real_escape_string($_POST['fornamn']);

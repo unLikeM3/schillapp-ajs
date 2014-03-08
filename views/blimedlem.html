@@ -20,32 +20,38 @@
 							<option value="man">Juridisk man</option>
 							<option value="kvinna">Juridisk kvinna</option>
 						</select>
-						<button ng-click="switchPage(1);">Fortsätt</button>
+						Årskurs: *
+						<select name="arskurs" ng-model="arskurs" required>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+						<button ng-click="switchPage(1);" class="right">Fortsätt</button>
 					</div>
 					<div class="form-page">
 						Address: *
-						<input type="text" name="adress" required>
+						<input type="text" name="adress" ng-model="adress1" required>
 						C/o address:
-						<input type="text" name="co">
+						<input type="text" name="co" ng-model="adress2">
 						Ort: *
-						<input type="text" name="ort" required>
+						<input type="text" name="ort" ng-model="city" required>
 						Telefonnummer: *
-						<input type="text" name="tel" required>
+						<input type="text" name="tel" ng-model="telnr1" required>
 						Alt. telefonnummer:
-						<input type="text" name="alttel">
+						<input type="text" name="alttel" ng-model="telnr2">
 						Email: *
-						<input type="email" name="email" required>
-						<button ng-click="switchPage(2);">Fortsätt</button>
+						<input type="email" name="email" ng-model="email" required>
+						<button ng-click="switchPage(2);" class="right">Fortsätt</button>
 					</div>
 					<div class="form-page">
-						<button ng-click="openInfo()">Information och stadgar</button>
+						<button ng-click="openInfo()" class="small-12 columns">Information och stadgar</button>
 						<div class="row">
 							<div class="small-12 columns infoPage">
 								<h2>Stadgar</h2>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, numquam, corrupti, pariatur earum accusamus sapiente magnam error veritatis ipsa optio neque illo quo esse qui hic exercitationem ea nobis aliquam nostrum ipsum? Obcaecati, architecto, doloremque commodi nam quasi laudantium animi eum ratione voluptas quae blanditiis suscipit maxime ducimus repellendus totam?</p>
 							</div>
 						</div>
-						<button ng-disabled="!memberform.$valid" ng-click="submitForm();">Jag accepterar stadgarna och vill bli medlem</button>
+						<button class="small-12 columns" ng-disabled="!memberform.$valid" ng-click="submitForm();">Jag accepterar stadgarna och vill bli medlem</button>
 					</div>
 				</div>
 			</form>

@@ -1,5 +1,4 @@
 <?php  
-	header("Access-Control-Allow-Origin: *");
 	if(isset($_POST['pnr']) && isset($_POST['period'])){
 		$pnr = $_POST['pnr'];
 		$period = $_POST['period'];

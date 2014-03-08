@@ -34,11 +34,37 @@ app.controller('memberController', function($scope){
 	}
 	$scope.submitForm = function(){
 		if($scope.memberform.$valid){
-			var form = $('#memberform').serializeArray();
-			console.log(form);
-			$.post(host+'/memberhandler.php', {data: form}, function(data){
+			var form = $('#memberform');
+			var fname = $scope.fornamn;
+			var lname = $scope.efternamn;
+			var ssn = $scope.ssn;
+			var sex = $scope.kon;
+			var arskurs = $scope.arskurs;
+			var adress1 = $scope.adress1;
+			var adress2 = $scope.adress2;
+			var city = $scope.city;
+			var telnr1 = $scope.telnr1;
+			var telnr2 = $scope.telnr2;
+			var email = $scope.email;
+
+			console.log(fname,lname,ssn,sex,adress1, adress2, city, telnr1, telnr2, email);
+			$.post(host+'/memberhandler.php', {
+				fname: fname, 
+				lname: lname, 
+				ssn: ssn, 
+				sex: sex, 
+				arskurs: arskurs, 
+				adress1: adress1, 
+				adress2: adress2,
+				city: city,
+				telnr1: telnr1,
+				telnr2: telnr2,
+				email: email
+			}, function(data){
 				console.log(data);
 			});
+		}else{
+			alert('Fyll i alla fält');
 		}
 	}
 });
