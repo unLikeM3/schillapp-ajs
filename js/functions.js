@@ -11,8 +11,22 @@ app.config(function($routeProvider){
 	}).when('/medlem', {
 		templateUrl: 'views/blimedlem.html',
 		controller: 'memberController',
+	}).when('/:id', {
+		templateUrl: 'views/post.html',
+		controller: 'postController'
+	}).when('/error', {
+		templateUrl: 'views/error.html'
 	}).otherwise({
 		templateUrl: 'views/error.html'
+	});
+});
+
+app.controller('postController', function($scope, $routeParams, $http){
+	var url = host+'/api/get_post/?id='+$routeParams.id;
+	
+	$http({method: 'post', url:url}).success(function(data){
+		console.log(data);
+		$scope.post = data.post;
 	});
 });
 
@@ -101,12 +115,19 @@ app.factory('loadposts', function($http){
 
 		this.busy = true;
 
+		console.log(new Date() - new Date(localStorage.lastUpdate));
+
 		var url = host+"/api/get_posts/?count="+this.count+"&offset="+this.offset;
 		$http({method: 'post', url: url}).success(function(data){
 			var items = data.posts;
 			this.posts = this.posts.concat(items);
 			this.offset += this.count;
 			this.busy = false;
+			if((new Date() - new Date(localStorage.lastUpdate)) > 1000*60){
+				localStorage.lastUpdate = new Date();
+				console.log("CACHE");
+			}
+
 			if(!this.max){
 				this.max = data.count_total;
 			}

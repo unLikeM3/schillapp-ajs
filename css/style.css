@@ -107,3 +107,9 @@ nav > h1{
 button.disabled, button[disabled], .button.disabled, .button[disabled] {
 	opacity: 0.2;
 }
+
+
+article h3 a{
+	color: #333;
+	text-decoration: underline;
+}

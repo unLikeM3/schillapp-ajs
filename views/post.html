@@ -1,0 +1,10 @@
+<nav>
+	<h1>{{ post.title }}</h1>
+</nav>
+<div class="spacer"></div>
+<div class="row">
+	<div class="small-12 columns">
+		<div ng-bind-html="post.content"> {{ post.content }} </div>
+		<small> {{ post.date }} by {{ post.author.nickname }} </small>
+	</div>
+</div>
