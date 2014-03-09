@@ -4,15 +4,15 @@
 var pushNotification;
 
 var push = {
-	successHandler = function(result){
+	successHandler: function(result){
 		alert('Registered: '+result);
 		console.log('Result: '+result)
 	},
-	errorHandler = function(err){
+	errorHandler: function(err){
 		alert('Error: '+err);
 		console.log('Error: '+err);
 	},
-	onNotif = function(e){
+	onNotif: function(e){
 		console.log('Event: '+e);
 		switch(e.event)
 		{
@@ -35,7 +35,8 @@ var push = {
 	}
 }
 
-document.addEventListener("deviceready", onDeviceReady, false);
+//document.addEventListener("deviceready", onDeviceReady, false);
+window.onload(onDeviceReady());
 
 function onDeviceReady(){
 	console.log("Device Ready");
