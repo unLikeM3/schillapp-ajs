@@ -19,6 +19,12 @@ var push = {
 				var regid = e.regid;
 				console.log('RegID: '+regid);
 				var url = "https://api.pushbots.com/deviceToken";
+
+				var payload = {
+					'token': regid,
+					'platform': '1',
+				};
+
 				$.ajax({
 					method: 'PUT',
 					dataType: 'json',
@@ -27,7 +33,7 @@ var push = {
 						req.setRequestHeader('X-PUSHBOTS-APPID', '531ca2661d0ab1f27c8b457b');
 					},
 					contentType: 'application/json',
-					data: "token="+regid+"&platform=['1']",
+					data: payload,
 					success: function(data){
 						alert('Success');
 						console.log('data', data)
