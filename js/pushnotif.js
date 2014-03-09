@@ -1,4 +1,3 @@
-alert('init');
 var pushNotification = window.plugins.pushNotification;
 pushNotification.register(
 	push.successHandler, 
@@ -20,8 +19,8 @@ var push = {
 			case 'registered' :
 				if(e.regid > 0){
 					alert('Registered: ' + e.regid);
-
 				}
+				alert(e.regid);
 				break;
 			case 'message' :
 				alert(e.message);
@@ -33,5 +32,5 @@ var push = {
 				alert('Something pushy happened');
 				break;
 		}
-	}
+	},
 }
