@@ -5,11 +5,9 @@ var pushNotification;
 
 var push = {
 	successHandler: function(result){
-		alert('Registered: '+result);
-		console.log('Result: '+result)
+		console.log('Result: '+result);
 	},
 	errorHandler: function(err){
-		alert('Error: '+err);
 		console.log('Error: '+err);
 	},
 	onNotif: function(e){
@@ -18,7 +16,21 @@ var push = {
 		{
 			case 'registered' :
 				alert(e.regid);
-				console.log('RegID: '+e.regid)
+				console.log('RegID: '+e.regid);
+				var url = "https://api.pushbots.com/deviceToken";
+				$.ajax({
+					method: 'PUT',
+					url: url,
+					beforeSend: function(req){
+						req.setRequestHeader('X-PUSHBOTS-APPID', '531ca2661d0ab1f27c8b457b');
+						req.setRequestHeader('content-Type', 'application/json');
+					},
+					token: e.regid,
+					platform: '1',
+					success: function(data){
+						console.log(data);
+					}
+				});
 				break;
 			case 'message' :
 				alert('Message: '+e.message);
