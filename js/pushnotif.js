@@ -1,5 +1,12 @@
+alert('init');
 var pushNotification = window.plugins.pushNotification;
-pushNotification.register(push.successHandler, push.errorHandler,{"senderID":"764406565523","ecb":"push.onNotificationGCM"});
+pushNotification.register(
+	push.successHandler, 
+	push.errorHandler,
+	{
+		"senderID":"764406565523",
+		"ecb":"push.onNotificationGCM"
+	});
 
 var push = {
 	successHandler: function(result){
