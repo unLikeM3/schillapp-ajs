@@ -31,6 +31,9 @@ var push = {
 					},
 					success: function(data){
 						alert('Data: '+data);
+					},
+					error: function(err){
+						alert(err);
 					}
 				});
 				break;
