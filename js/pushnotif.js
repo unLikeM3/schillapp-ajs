@@ -17,9 +17,7 @@ var push = {
 		{
 			case 'registered' :
 				var regid = e.regid;
-				console.log('RegID: '+regid);
 				var url = "https://api.pushbots.com/deviceToken";
-
 				var payload = {
 					'token': regid,
 					'platform': '1',
@@ -35,12 +33,10 @@ var push = {
 					contentType: 'application/json',
 					data: JSON.stringify(payload),
 					success: function(data){
-						alert('Success');
-						console.log('data', data)
+						
 					},
 					error: function(err){
-						alert('err');
-						console.log('err', err);
+						
 					}
 				});
 				break;
