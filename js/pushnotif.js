@@ -35,10 +35,7 @@ var push = {
 	}
 }
 
-//document.addEventListener("deviceready", onDeviceReady, false);
-window.onload(onDeviceReady());
-
-function onDeviceReady(){
+$(window).load(function(){
 	console.log("Device Ready");
 	pushNotification = window.plugins.pushNotification;
 	console.log(pushNotification);
@@ -47,5 +44,5 @@ function onDeviceReady(){
 			'senderID': '764406565523',
 			'ecb': 'push.onNotif'
 		});
-	}	
-}
+	}
+});
