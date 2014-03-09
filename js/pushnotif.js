@@ -38,11 +38,9 @@ var push = {
 $(window).load(function(){
 	console.log("Device Ready");
 	pushNotification = window.plugins.pushNotification;
-	console.log(pushNotification);
-	if(device.platform.toLowerCase() == 'android'){
-		pushNotification.register(push.successHandler, push.errorHandler, {
-			'senderID': '764406565523',
-			'ecb': 'push.onNotif'
-		});
-	}
+	
+	pushNotification.register(push.successHandler, push.errorHandler, {
+		'senderID': '764406565523',
+		'ecb': 'push.onNotif'
+	});
 });
