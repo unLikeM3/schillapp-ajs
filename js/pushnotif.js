@@ -30,7 +30,7 @@ var push = {
 						'platform': ['1'],
 					},
 					success: function(data){
-						console.log(data);
+						alert('Data: '+data);
 					}
 				});
 				break;
