@@ -25,8 +25,10 @@ var push = {
 						req.setRequestHeader('X-PUSHBOTS-APPID', '531ca2661d0ab1f27c8b457b');
 						req.setRequestHeader('content-Type', 'application/json');
 					},
-					"token": regid,
-					"platform": '1',
+					data: {
+						'token': regid,
+						'platform': ['1'],
+					},
 					success: function(data){
 						console.log(data);
 					}
