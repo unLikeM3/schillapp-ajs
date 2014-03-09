@@ -31,9 +31,11 @@ var push = {
 					},
 					success: function(data){
 						alert('Data: '+data);
+						console.log('data', data)
 					},
 					error: function(err){
 						alert(err);
+						console.log('err', err);
 					}
 				});
 				break;
