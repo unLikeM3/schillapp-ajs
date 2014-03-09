@@ -6,6 +6,7 @@ var pushNotification;
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
+	pushNotification = window.plugins.pushNotification;
 	if(device.platform.toLowerCase() == 'android'){
 		pushNotification.register(push.successHandler, push.errorHandler, {
 			'senderID': '764406565523',
