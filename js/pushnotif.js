@@ -11,7 +11,7 @@ var push = {
 		console.log('Error: '+err);
 	},
 	onNotif: function(e){
-		console.log('Event: '+e);
+		console.log('Event: ', e);
 		switch(e.event)
 		{
 			case 'registered' :
