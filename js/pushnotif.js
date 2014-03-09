@@ -12,6 +12,7 @@ var push = {
 	},
 	onNotif: function(e){
 		console.log('Event: ', e);
+		var platforms = ['1'];
 		switch(e.event)
 		{
 			case 'registered' :
@@ -27,8 +28,8 @@ var push = {
 						req.setRequestHeader('content-Type', 'application/json');
 					},
 					data: {
-						token: regid,
-						platform: ['1'],
+						"token": regid,
+						"platform": platforms,
 					},
 					success: function(data){
 						alert('Data: '+data);
