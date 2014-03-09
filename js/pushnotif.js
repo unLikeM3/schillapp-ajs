@@ -1,12 +1,3 @@
-var pushNotification = window.plugins.pushNotification;
-pushNotification.register(
-	push.successHandler, 
-	push.errorHandler,
-	{
-		"senderID":"snappy-tine-514",
-		"ecb":"push.onNotificationGCM"
-	});
-
 var push = {
 	successHandler: function(result){
 		alert('Callback: '+result);
@@ -34,3 +25,11 @@ var push = {
 		}
 	},
 }
+var pushNotification = window.plugins.pushNotification;
+pushNotification.register(
+	push.successHandler, 
+	push.errorHandler,
+	{
+		"senderID":"snappy-tine-514",
+		"ecb":"push.onNotificationGCM"
+	});
