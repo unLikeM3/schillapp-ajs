@@ -7,14 +7,14 @@
 		<div class="small-12 columns">
 			<div>
 				<section>
-					<div ng-repeat="post in loadPosts.posts">
+					<div ng-repeat="post in loadPosts.posts track by $index">
 						<h3> <a href="#/{{post.id}}">{{ post.title }}</a> </h3>
 						<div ng-bind-html="post.content"> {{ post.content }} </div>
 						<hr>
 					</div>
 				</section>
 				<div style="clear:both;"></div>
-				<div ng-show="loadPosts.busy" style="height:400px"><img style="position: absolute; left: 50%; top: 50%; margin-left: -20px;" src="img/spinner.gif" alt="" /></div>
+				<div ng-show="loadPosts.busy"><img style="position: absolute; left: 50%; bottom: 50px; margin-left: -20px;" src="img/spinner.gif" alt="" /></div>
 				<div ng-show="loadPosts.max < loadPosts.offset">Inga fler inlägg att visa.</div>
 			</div>
 		</div>

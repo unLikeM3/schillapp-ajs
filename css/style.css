@@ -94,7 +94,7 @@ nav > h1{
 .headerBackBtn{
 	position: absolute;
 	background-color: transparent !important;
-	color: #333;
+	color: #333 !important;
 	padding: 10px;
 	top: 3px;
 }

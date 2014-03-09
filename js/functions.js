@@ -89,11 +89,16 @@ app.controller('listController', function($scope, $sce, loadposts){
 });
 app.controller('scheduleController', function($scope){
 	$scope.thetitle = "Schema";
+	if(localStorage.ssn){
+		$scope.persnr = localStorage.ssn;
+	}
 	$scope.loadSchedule = function(){
 		$('#schedulecontainer').css({'width': '100%'}).html('<img style="position: absolute; left: 50%;margin-top: 100px; margin-left: -20px;" src="img/spinner.gif" alt="" />');
 		var ssn = $scope.persnr;
 		var day = $scope.day;
 		var semester = new Date() > new Date(1900 + new Date().getYear(), 5, 30,0,0,0) ? 'HT' : 'VT';
+
+		localStorage.ssn = ssn;
 
 		$.post(host+'/loadschedule.php', {pnr: ssn, day: day, period: semester}, function(data){
 			$('#schedulecontainer').html(data);
@@ -104,34 +109,54 @@ app.controller('scheduleController', function($scope){
 
 app.factory('loadposts', function($http){
 	var loadPosts = function(){
-		this.posts = [];
+		this.posts = new Array();
 		this.busy = false;
 		this.offset = 0;
 		this.count = 5;
 		this.max;
+		this.load = true;
 	};
 	loadPosts.prototype.getPosts = function(){
 		if (this.busy) return;
 
 		this.busy = true;
+		
+		if(localStorage.feed){
+			if(new Date() - new Date(localStorage.lastUpdate) < 1000*60){
+				if(this.offset < 5){
+					this.load = false;
+				}else{
+					this.load = true;
+				}
+			}else{
+				this.load = true;
+			}
+		}else{
+			this.load = true;
+		}
+		if(this.load){
+			var url = host+"/api/get_posts/?count="+this.count+"&offset="+this.offset;
+			$http({method: 'post', url: url}).success(function(data){
+				var items = data.posts;
+				this.posts = this.posts.concat(items);
 
-		console.log(new Date() - new Date(localStorage.lastUpdate));
-
-		var url = host+"/api/get_posts/?count="+this.count+"&offset="+this.offset;
-		$http({method: 'post', url: url}).success(function(data){
-			var items = data.posts;
-			this.posts = this.posts.concat(items);
-			this.offset += this.count;
-			this.busy = false;
-			if((new Date() - new Date(localStorage.lastUpdate)) > 1000*60){
+				localStorage.feed = JSON.stringify(this.posts);
+				localStorage.cacheOffset = 0;
+				localStorage.cacheOffset = parseInt(this.offset);
 				localStorage.lastUpdate = new Date();
-				console.log("CACHE");
-			}
+				this.busy = false;
 
-			if(!this.max){
-				this.max = data.count_total;
-			}
-		}.bind(this));
+				if(!this.max){
+					this.max = data.count_total;
+				}
+			}.bind(this));
+		}else{
+			this.posts = JSON.parse(localStorage.feed);
+			this.offset = parseInt(localStorage.cacheOffset);
+			this.busy = false;
+		}
+		
+		this.offset += this.count;
 	};
 
 	return loadPosts;
