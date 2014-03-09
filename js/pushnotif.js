@@ -4,7 +4,7 @@ pushNotification.register(
 	push.successHandler, 
 	push.errorHandler,
 	{
-		"senderID":"764406565523",
+		"senderID":"snappy-tine-514",
 		"ecb":"push.onNotificationGCM"
 	});
 
