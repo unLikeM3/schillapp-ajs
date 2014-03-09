@@ -1,35 +1,34 @@
+/**
+ * PushNotification
+ */
+var pushNotification;
+
+if(device.platform.toLowerCase() == 'android'){
+	pushNotification.register(push.successHandler, push.errorHandler, {
+		'senderID': '764406565523',
+		'ecb': 'push.onNotif'
+	});
+}
+
 var push = {
-	successHandler: function(result){
-		alert('Callback: '+result);
+	successHandler = function(result){
+		alert('Registered: '+result);
 	},
-	errorHandler: function(error){
-		alert(error);
+	errorHandler = function(err){
+		alert('Error: '+err);
 	},
-	onNotificationGCM: function(e){
-		switch (e.event) {
+	onNotif = function(e){
+		switch(e.event)
+		{
 			case 'registered' :
-				if(e.regid > 0){
-					alert('Registered: ' + e.regid);
-				}
 				alert(e.regid);
 				break;
 			case 'message' :
-				alert(e.message);
+				alert(e.payload.message);
 				break;
-			case 'error' : 
+			case 'error' :
 				alert(e.msg);
 				break;
-			default :
-				alert('Something pushy happened');
-				break;
 		}
-	},
+	}
 }
-var pushNotification = window.plugins.pushNotification;
-pushNotification.register(
-	push.successHandler, 
-	push.errorHandler,
-	{
-		"senderID":"snappy-tine-514",
-		"ecb":"push.onNotificationGCM"
-	});
