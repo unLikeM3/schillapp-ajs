@@ -5,10 +5,11 @@
 <div class="spacer"></div>
 <div class="row">
 	<div class="small-12 columns">
+		Spinner: {{ showSpinner }}, Msg: {{ showMsg }}.
 		<div class="form-page-container-outer">
 			<form name="memberform" ng-model="memberform" id="memberform" novalidate>
 				<div class="form-page-container-inner">
-					<div class="form-page">
+					<div class="form-page form-page-0">
 						Förnamn: *
 						<input type="text" name="fornamn" ng-model="fornamn" required />
 						Efternamn: *
@@ -28,7 +29,7 @@
 						</select>
 						<button ng-click="switchPage(1);" class="right">Fortsätt</button>
 					</div>
-					<div class="form-page">
+					<div class="form-page form-page-1">
 						Address: *
 						<input type="text" name="adress" ng-model="adress1" required>
 						C/o address:
@@ -43,7 +44,7 @@
 						<input type="email" name="email" ng-model="email" required>
 						<button ng-click="switchPage(2);" class="right">Fortsätt</button>
 					</div>
-					<div class="form-page">
+					<div class="form-page form-page-2">
 						<button ng-click="openInfo()" class="small-12 columns">Information och stadgar</button>
 						<div class="row">
 							<div class="small-12 columns infoPage">
@@ -55,6 +56,12 @@
 					</div>
 				</div>
 			</form>
+			<div ng-show="showSpinner">
+				<center>Skickar in ansökan...</center>
+			</div>
+			<div ng-show="showMsg">
+				<center>{{ msg }}</center>
+			</div>
 		</div>
 	</div>
 </div>

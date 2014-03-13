@@ -35,6 +35,15 @@ app.controller('memberController', function($scope){
 	$scope.currentPage = 0;
 	$scope.nextPage;
 	$scope.prevPage = 0;
+	$scope.showMsg = false;
+	$scope.showSpinner = false;
+
+	var heights = [
+		$('.form-page-0').height(),
+		$('.form-page-1').height(),
+		$('.form-page-2').height(),
+	];
+
 	$scope.switchPage = function(newpage){
 		var newOffset = newpage*100;
 		$scope.currentPage = newpage;
@@ -42,12 +51,16 @@ app.controller('memberController', function($scope){
 		$('.form-page-container-inner').animate({
 			'margin-left': '-'+newOffset+'%',
 		}, 200);
+		$('.form-page').animate({
+			'max-height': heights[$scope.currentPage],
+		}, 200);
 	}
 	$scope.openInfo = function(){
 		$('.infoPage').slideToggle();
 	}
 	$scope.submitForm = function(){
 		if($scope.memberform.$valid){
+			$scope.showSpinner = true;
 			var form = $('#memberform');
 			var fname = $scope.fornamn;
 			var lname = $scope.efternamn;
@@ -61,7 +74,6 @@ app.controller('memberController', function($scope){
 			var telnr2 = $scope.telnr2;
 			var email = $scope.email;
 
-			console.log(fname,lname,ssn,sex,adress1, adress2, city, telnr1, telnr2, email);
 			$.post(host+'/memberhandler.php', {
 				fname: fname, 
 				lname: lname, 
@@ -75,7 +87,11 @@ app.controller('memberController', function($scope){
 				telnr2: telnr2,
 				email: email
 			}, function(data){
-				console.log(data);
+				$scope.$apply(function(){
+					$scope.showSpinner = false;
+					$scope.msg = data;
+					$scope.showMsg = true;
+				});
 			});
 		}else{
 			alert('Fyll i alla fält');
@@ -92,6 +108,33 @@ app.controller('scheduleController', function($scope){
 	if(localStorage.ssn){
 		$scope.persnr = localStorage.ssn;
 	}
+
+
+	var currentDay = new Date().getDay();
+
+	var showDay;
+	switch(currentDay){
+		case 1 :
+			showDay = 1;
+			break;
+		case 2 :
+			showDay = 2;
+			break;
+		case 3 :
+			showDay = 4;
+			break;
+		case 4 :
+			showDay = 8;
+			break;
+		case 5 :
+			showDay = 16;
+			break;
+		default :
+			showDay = 1;
+			break;
+	}
+	$scope.day = showDay;
+
 	$scope.loadSchedule = function(){
 		$('#schedulecontainer').css({'width': '100%'}).html('<img style="position: absolute; left: 50%;margin-top: 100px; margin-left: -20px;" src="img/spinner.gif" alt="" />');
 		var ssn = $scope.persnr;

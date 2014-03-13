@@ -3,7 +3,7 @@
 
 	$post = json_decode(json_encode($_POST));
 
-	var_dump($post);
+	//var_dump($post);
 
 	if(isset( $post->fname,  $post->lname,  $post->ssn, $post->sex, $post->arskurs, $post->adress1, $post->city, $post->telnr1, $post->email )  && !empty($post->fname) && !empty($post->lname) && !empty($post->ssn) && !empty($post->sex) && !empty($post->arskurs) && !empty($post->adress1) && !empty($post->city) && !empty($post->telnr1) && !empty($post->email))
 	{
