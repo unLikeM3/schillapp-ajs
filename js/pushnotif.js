@@ -50,10 +50,10 @@ var push = {
 							contentType: "application/json",
 							data: JSON.stringify(tagData),
 							success: function(data){
-								alert('Tagged!');
+								
 							},
 							error: function(err){
-								alert('Tag error: '+err);
+								
 							}
 						});
 					},
@@ -63,12 +63,10 @@ var push = {
 				});
 				break;
 			case 'message' :
-				alert('Message: '+e.message);
-				console.log('Message: '+e.message);
+				alert(e.message);
 				break;
 			case 'error' :
-				alert(e.msg);
-				console.log('Error: '+e.msg);
+				
 				break;
 			default :
 				console.log("Default, unknown, GCM event");
