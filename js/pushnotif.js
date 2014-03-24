@@ -50,10 +50,10 @@ var push = {
 							contentType: "application/json",
 							data: JSON.stringify(tagData),
 							success: function(data){
-
+								alert('Tagged!');
 							},
 							error: function(err){
-
+								alert('Tag error: '+err);
 							}
 						});
 					},
