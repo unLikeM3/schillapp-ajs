@@ -33,7 +33,29 @@ var push = {
 					contentType: 'application/json',
 					data: JSON.stringify(payload),
 					success: function(data){
-						
+
+						var tagData = {
+							'platform': "1",
+							'tag': "Dev",
+							'token': regid,
+						}
+
+						$.ajax({
+							method: "PUT",
+							dataType: 'json',
+							url: "http://api.pushbots.com/tag",
+							beforeSend: function(req){
+								req.setRequestHeader('X-PUSHBOTS-APPID', '531ca2661d0ab1f27c8b457b');
+							},
+							contentType: "application/json",
+							data: JSON.stringify(tagData),
+							success: function(data){
+
+							},
+							error: function(err){
+
+							}
+						});
 					},
 					error: function(err){
 						
