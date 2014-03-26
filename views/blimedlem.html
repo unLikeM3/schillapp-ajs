@@ -5,7 +5,6 @@
 <div class="spacer"></div>
 <div class="row">
 	<div class="small-12 columns">
-		Spinner: {{ showSpinner }}, Msg: {{ showMsg }}.
 		<div class="form-page-container-outer">
 			<form name="memberform" ng-model="memberform" id="memberform" novalidate>
 				<div class="form-page-container-inner">
@@ -57,7 +56,9 @@
 				</div>
 			</form>
 			<div ng-show="showSpinner">
-				<center>Skickar in ansökan...</center>
+				<center>
+					<img style="margin-bottom: 30px;" src="img/spinner.gif" alt="" />
+				</center>
 			</div>
 			<div ng-show="showMsg">
 				<center>{{ msg }}</center>

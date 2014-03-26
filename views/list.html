@@ -14,7 +14,11 @@
 					</div>
 				</section>
 				<div style="clear:both;"></div>
-				<div ng-show="loadPosts.busy"><img style="position: absolute; left: 50%; bottom: 50px; margin-left: -20px;" src="img/spinner.gif" alt="" /></div>
+				<div ng-show="loadPosts.busy">
+					<center>
+						<img style="margin-bottom: 30px;" src="img/spinner.gif" alt="" />
+					</center>
+				</div>
 				<div ng-show="loadPosts.max < loadPosts.offset">Inga fler inlägg att visa.</div>
 			</div>
 		</div>
