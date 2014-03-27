@@ -1,8 +1,8 @@
 <?php
-	$host	= 'wp2-182898.mysql.binero.se';
-	$user	= '182898_jq37898';
-	$pass	= 'Sch1lNad';
-	$db		= '182898-wp2';
+	$host	= '';
+	$user	= '';
+	$pass	= '';
+	$db		= '';
 
 	$con = mysql_connect($host, $user, $pass);
 	
