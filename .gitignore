@@ -1,1 +1,4 @@
 backend/connect.php
+backend/sftp-config.json
+backend/wp-config.php
+backend/push.php
