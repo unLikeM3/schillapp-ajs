@@ -1,5 +1,5 @@
 var ajs = angular;
-var host = "http://www.schillerskaselevkar.se/v2";
+var host = "http://www.schillerskaselevkar.se";
 var app = ajs.module('schill', ['ngRoute', 'ngSanitize', 'infinite-scroll']);
 app.config(function ($routeProvider) {
     $routeProvider.when('/', {
@@ -37,6 +37,10 @@ app.controller('memberController', function ($scope) {
     $scope.showMsg = false;
     $scope.showSpinner = false;
 
+    $.get(host + '/api/get_page/?slug=stadgar', function (data) {
+        $('.infoPage').html(data.page.content);
+    });
+
     var heights = [
         $('.form-page-0').height(),
         $('.form-page-1').height(),
@@ -49,9 +53,6 @@ app.controller('memberController', function ($scope) {
         $scope.prevPage = $scope.currentPage - 1;
         $('.form-page-container-inner').animate({
             'margin-left': '-' + newOffset + '%',
-        }, 200);
-        $('.form-page').animate({
-            'max-height': heights[$scope.currentPage],
         }, 200);
     };
     $scope.openInfo = function () {
@@ -154,7 +155,7 @@ app.factory('Loadposts', function ($http) {
         this.busy = false;
         this.offset = 0;
         this.count = 5;
-        this.max = null;
+        this.max = 0;
         this.load = true;
     };
     loadPosts.prototype.getPosts = function () {
