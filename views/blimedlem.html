@@ -10,11 +10,11 @@
 				<div class="form-page-container-inner">
 					<div class="form-page form-page-0">
 						Förnamn: *
-						<input type="text" name="fornamn" ng-model="fornamn" required />
+						<input type="text" name="fornamn" ng-model="fornamn" placeholder="Förnamn" required />
 						Efternamn: *
-						<input type="text" name="efternamn" ng-model="efternamn" required />
+						<input type="text" name="efternamn" ng-model="efternamn" placeholder="Efternamn" required />
 						Personnummer: *
-						<input type="text" name="ssn" ng-model="ssn" ng-pattern="/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]/" required>
+						<input type="text" name="ssn" ng-model="ssn" ng-pattern="/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]/" placeholder="YYMMDDXXXX eller YYYYMMDDXXXX" required>
 						Kön: *
 						<select name="kon" ng-model="kon" required>
 							<option value="man">Juridisk man</option>
@@ -30,17 +30,17 @@
 					</div>
 					<div class="form-page form-page-1">
 						Address: *
-						<input type="text" name="adress" ng-model="adress1" required>
-						C/o address:
-						<input type="text" name="co" ng-model="adress2">
+						<input type="text" name="adress" ng-model="adress1" placeholder="Adress" required>
+						C/o:
+						<input type="text" name="co" placeholder="C/o" ng-model="adress2">
 						Ort: *
-						<input type="text" name="ort" ng-model="city" required>
+						<input type="text" name="ort" ng-model="city" placeholder="Ort" required>
 						Telefonnummer: *
-						<input type="text" name="tel" ng-model="telnr1" required>
+						<input type="text" name="tel" ng-model="telnr1" placeholder="070000000" required>
 						Alt. telefonnummer:
-						<input type="text" name="alttel" ng-model="telnr2">
+						<input type="text" name="alttel" placeholder="031000000" ng-model="telnr2">
 						Email: *
-						<input type="email" name="email" ng-model="email" required>
+						<input type="email" name="email" ng-model="email" placeholder="du@example.com" required>
 						<button ng-click="switchPage(2);" class="right">Fortsätt</button>
 					</div>
 					<div class="form-page form-page-2">

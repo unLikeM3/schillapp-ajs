@@ -40,13 +40,6 @@ app.controller('memberController', function ($scope) {
     $.get(host + '/api/get_page/?slug=stadgar', function (data) {
         $('.infoPage').html(data.page.content);
     });
-
-    var heights = [
-        $('.form-page-0').height(),
-        $('.form-page-1').height(),
-        $('.form-page-2').height(),
-    ];
-
     $scope.switchPage = function (newpage) {
         var newOffset = newpage * 100;
         $scope.currentPage = newpage;
@@ -181,6 +174,9 @@ app.factory('Loadposts', function ($http) {
             var url = host + "/api/get_posts/?count=" + this.count + "&offset=" + this.offset;
             $http({method: 'post', url: url}).success(function (data) {
                 var items = data.posts;
+                items.forEach(function (item) {
+                    item = item.replace('src="//www', 'src="http://www');
+                });
                 this.posts = this.posts.concat(items);
 
                 localStorage.feed = JSON.stringify(this.posts);
