@@ -158,7 +158,7 @@ app.factory('Loadposts', function ($http) {
 
         this.busy = true;
         if (localStorage.feed) {
-            if (new Date() - new Date(localStorage.lastUpdate) < 1000 * 60) {
+            if (new Date() - new Date(localStorage.lastUpdate) < 1 * 60) {
                 if (this.offset < 5) {
                     this.load = false;
                 } else {
@@ -173,10 +173,14 @@ app.factory('Loadposts', function ($http) {
         if (this.load) {
             var url = host + "/api/get_posts/?count=" + this.count + "&offset=" + this.offset;
             $http({method: 'post', url: url}).success(function (data) {
-                var items = data.posts;
-                items.forEach(function (item) {
-                    item = item.replace('src="//www', 'src="http://www');
+                var items = [];
+                data.posts.forEach(function (item) {
+                    var filteredContent = item.content.replace('src="//', 'src="http://');
+                    item.content = filteredContent;
+                    items.push(item);
+
                 });
+                console.log(items);
                 this.posts = this.posts.concat(items);
 
                 localStorage.feed = JSON.stringify(this.posts);
