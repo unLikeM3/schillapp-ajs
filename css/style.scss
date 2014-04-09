@@ -47,10 +47,15 @@ input.ng-invalid.ng-dirty{
 	height: 44px;
 	padding: 0;
 }
-.tabbar > .button > img{
-	margin-top: 8px;
-	max-width: 27px;
-	max-height: 30px;
+.tabbar > .button {
+	color: #333;
+
+	&:hover {
+		color: #333;
+	}
+	&:active {
+		color: #333;
+	}
 }
 
 nav{

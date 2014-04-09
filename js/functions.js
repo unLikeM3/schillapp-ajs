@@ -158,7 +158,7 @@ app.factory('Loadposts', function ($http) {
 
         this.busy = true;
         if (localStorage.feed) {
-            if (new Date() - new Date(localStorage.lastUpdate) < 1 * 60) {
+            if (new Date() - new Date(localStorage.lastUpdate) < 1000 * 60) {
                 if (this.offset < 5) {
                     this.load = false;
                 } else {
@@ -178,9 +178,7 @@ app.factory('Loadposts', function ($http) {
                     var filteredContent = item.content.replace('src="//', 'src="http://');
                     item.content = filteredContent;
                     items.push(item);
-
                 });
-                console.log(items);
                 this.posts = this.posts.concat(items);
 
                 localStorage.feed = JSON.stringify(this.posts);
