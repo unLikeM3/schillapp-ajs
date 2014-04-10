@@ -21,11 +21,11 @@ app.config(function ($routeProvider) {
     });
 });
 
-app.controller('postController', function ($scope, $routeParams, $http) {
+app.controller('postController', function ($scope, $routeParams, $http, $sce) {
     var url = host + '/api/get_post/?id=' + $routeParams.id;
     $http({method: 'post', url: url}).success(function (data) {
-        console.log(data);
         $scope.post = data.post;
+        $scope.post.content = $sce.trustAsHtml(data.post.content);
     });
 });
 
@@ -142,7 +142,7 @@ app.controller('scheduleController', function ($scope) {
 });
 
 
-app.factory('Loadposts', function ($http) {
+app.factory('Loadposts', function ($http, $sce) {
     var loadPosts = function () {
         this.posts = [];
         this.busy = false;
@@ -158,7 +158,7 @@ app.factory('Loadposts', function ($http) {
 
         this.busy = true;
         if (localStorage.feed) {
-            if (new Date() - new Date(localStorage.lastUpdate) < 1000 * 60) {
+            if (new Date() - new Date(localStorage.lastUpdate) < 100 * 60) {
                 if (this.offset < 5) {
                     this.load = false;
                 } else {
